@@ -50,7 +50,4 @@ public class ControleRegleTest {
         plateau.poserPion(caseChoisie);
         assertEquals("X", new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
     }
-
-
-
 }
