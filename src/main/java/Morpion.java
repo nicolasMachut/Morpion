@@ -30,6 +30,7 @@ public class Morpion {
 
     public void demarrerPartie () {
 
+        boucle:
         do  {
             for (Joueur joueurQuiDoitJouer : joueurs) {
                 Case caseChoisie;
@@ -43,11 +44,13 @@ public class Morpion {
                     posePion = controleRegle.poserPion(caseChoisie);
                 } while (!posePion);
 
-                if (controleRegle.jeuFini()) {
-                    break;
+                if (controleRegle.plateauComplet() || controleRegle.jeuGagne(caseChoisie)) {
+                    break boucle;
                 }
             }
 
-        } while (!controleRegle.jeuFini());
+        } while (!controleRegle.plateauComplet());
+        System.out.println("fini");
     }
+
 }

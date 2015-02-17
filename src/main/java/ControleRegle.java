@@ -19,8 +19,11 @@ public class ControleRegle {
         this.nbPionPourGagner = nbPionPourGagnerParDefaut;
     }
 
-    public boolean jeuFini() {
-       return false;
+    public boolean jeuGagne (Case caseChoisie) {
+        System.out.println(verifierColonneGagnante(caseChoisie) != null);
+        System.out.println(verifierLigneGagnante(caseChoisie) != null);
+        System.out.println(verifierDiagonaleGagnante(caseChoisie) != null);
+        return verifierColonneGagnante(caseChoisie) != null || verifierLigneGagnante(caseChoisie) != null || verifierDiagonaleGagnante(caseChoisie) != null;
     }
 
     public String verifierLigneGagnante (Case caseChoisie) {
@@ -32,8 +35,10 @@ public class ControleRegle {
         int ligne = caseChoisie.getX();
         int nbPionsIdentiques = 1;
 
-        for(int y=yDepart; y<yArrivee; y++){
-            if (plateau[ligne][y].getPion().getType().equals(plateau[ligne][caseChoisie.getY()].getPion().getType())){
+        String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
+
+        for(int y=yDepart; y <= yArrivee; y++){
+            if (plateau[ligne][y].getPion() != null && plateau[ligne][y].getPion().getType().equals(typePionPosee)){
                 nbPionsIdentiques++;
             } else {
                 nbPionsIdentiques =1;
