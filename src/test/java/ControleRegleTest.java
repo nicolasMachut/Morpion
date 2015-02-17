@@ -17,9 +17,9 @@ public class ControleRegleTest {
 
     @Test
     public void testUneLigneGagnante() throws Exception {
-        plateau.poserPion(new Case(1, 0, new Pion("X")));
-        plateau.poserPion(new Case(1, 1, new Pion("X")));
-        Case caseChoisie = new Case(1, 2, new Pion("X"));
+        plateau.poserPion(new Case(0, 0, new Pion("X")));
+        //plateau.poserPion(new Case(1, 1, new Pion("X")));
+        Case caseChoisie = new Case(0, 1, new Pion("X"));
         plateau.poserPion(caseChoisie);
         assertEquals("X", new ControleRegle(plateau, 3).verifierLigneGagnante(caseChoisie));
     }
