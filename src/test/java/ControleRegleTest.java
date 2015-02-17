@@ -1,5 +1,9 @@
 import static org.junit.Assert.*;
 
+import generiques.Case;
+import generiques.Pion;
+import generiques.Plateau;
+import morpion.ControleRegle;
 import org.junit.Before;
 import org.junit.Test;
 

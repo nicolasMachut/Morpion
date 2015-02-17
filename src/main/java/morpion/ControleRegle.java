@@ -1,3 +1,9 @@
+package morpion;
+
+import generiques.Case;
+import generiques.CaseOccupeeException;
+import generiques.Plateau;
+
 /**
  * Created by nicolas on 07/01/15.
  */

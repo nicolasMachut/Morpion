@@ -1,3 +1,4 @@
+package generiques;
 
 /**
  * Created by nicolas on 07/01/15.

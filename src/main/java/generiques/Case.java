@@ -1,3 +1,7 @@
+package generiques;
+
+import generiques.Pion;
+
 /**
  * Created by nicolas on 07/01/15.
  */

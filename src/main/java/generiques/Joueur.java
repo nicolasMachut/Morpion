@@ -1,3 +1,5 @@
+package generiques;
+
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -41,9 +43,9 @@ public class Joueur implements Comparable<Joueur>{
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Joueur"+this.numero+", saisir x : ");
+        System.out.println("generiques.Joueur"+this.numero+", saisir x : ");
         int x = scanner.nextInt();
-        System.out.println("Joueur"+this.numero+", saisir y : ");
+        System.out.println("generiques.Joueur"+this.numero+", saisir y : ");
         int y = scanner.nextInt();
 
         return new Case(x, y, pion);
