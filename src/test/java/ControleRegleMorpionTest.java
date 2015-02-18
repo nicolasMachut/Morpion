@@ -10,7 +10,7 @@ import org.junit.Test;
 /**
  * Created by nicolas on 17/02/15.
  */
-public class ControleRegleTest {
+public class ControleRegleMorpionTest {
 
     private Plateau plateau;
 

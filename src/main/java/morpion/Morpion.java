@@ -25,7 +25,7 @@ public class Morpion {
 
     public void creerPions() {
         joueurs[0].creerPions(nbPions, "X");
-        joueurs[1].creerPions(nbPions, "Y");
+        joueurs[1].creerPions(nbPions, "O");
     }
 
     public void demarrerPartie () {
@@ -54,5 +54,7 @@ public class Morpion {
             }
 
         } while (!controleRegle.plateauComplet());
+        this.controleRegle.afficherPlateau();
+        System.out.println("La partie est fini ! N'hésitez pas à rejouer !!");
     }
 }

@@ -59,11 +59,11 @@ public class ControleRegle {
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
         int colonne = caseChoisie.getY();
-        int nbPionsIdentiques = 1;
+        int nbPionsIdentiques = 0;
 
         String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
 
-        for(int x=xDepart; x<xArrivee; x++){
+        for(int x = xDepart; x <= xArrivee; x++){
             if (plateau[x][colonne].getPion() != null && plateau[x][colonne].getPion().getType().equals(typePionPosee)){
                 nbPionsIdentiques++;
             } else {
@@ -74,8 +74,6 @@ public class ControleRegle {
                 return true;
             }
         }
-
-
 
         return false;
     }
@@ -111,11 +109,11 @@ public class ControleRegle {
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
 
-        int nbPionsIdentiques = 1;
+        int nbPionsIdentiques = 0;
 
         String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
 
-        for(int x=xDepart; x<xArrivee; x++) {
+        for(int x=xDepart; x <= xArrivee; x++) {
             if (plateau[x][x].getPion() != null && plateau[x][x].getPion().getType().equals(typePionPosee)) {
                 nbPionsIdentiques++;
             } else {
