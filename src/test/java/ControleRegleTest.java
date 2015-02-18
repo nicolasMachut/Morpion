@@ -25,7 +25,7 @@ public class ControleRegleTest {
         plateau.poserPion(new Case(0, 2, new Pion("X")));
         Case caseChoisie = new Case(0, 1, new Pion("X"));
         plateau.poserPion(caseChoisie);
-        assertEquals("X", new ControleRegle(plateau, 3).verifierLigneGagnante(caseChoisie));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierLigneGagnante(caseChoisie));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class ControleRegleTest {
         plateau.poserPion(new Case(1, 1, new Pion("X")));
         Case caseChoisie = new Case(2, 1, new Pion("X"));
         plateau.poserPion(caseChoisie);
-        assertEquals("X", new ControleRegle(plateau, 3).verifierColonneGagnante(caseChoisie));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierColonneGagnante(caseChoisie));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class ControleRegleTest {
         plateau.poserPion(new Case(1, 1, new Pion("X")));
         Case caseChoisie = new Case(2, 2, new Pion("X"));
         plateau.poserPion(caseChoisie);
-        assertEquals("X", new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
     }
 
     @Test
@@ -52,7 +52,6 @@ public class ControleRegleTest {
         plateau.poserPion(new Case(1, 1, new Pion("X")));
         Case caseChoisie = new Case(2, 0, new Pion("X"));
         plateau.poserPion(caseChoisie);
-        assertEquals("X", new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
     }
-
 }

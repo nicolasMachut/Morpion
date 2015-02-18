@@ -18,26 +18,22 @@ public class Morpion {
     public Morpion() {
         this.controleRegle = new ControleRegle(new Plateau(nbCases), 3);
         joueurs = new Joueur[nbJoueurs];
-        for (int i = 0; i < nbJoueurs; i++) {
-            joueurs[i] = new Joueur(i+1);
-        }
+        joueurs[0] = new Joueur("1");
+        joueurs[1] = new Joueur("2");
         creerPions();
     }
 
     public void creerPions() {
-        for (Joueur joueur : joueurs) {
-            String typeDePion = "O";
-            if (joueur.getNumero() == 1) {
-                typeDePion = "X";
-            }
-            joueur.creerPions(nbPions, typeDePion);
-        }
+        joueurs[0].creerPions(nbPions, "X");
+        joueurs[1].creerPions(nbPions, "Y");
     }
 
     public void demarrerPartie () {
 
+        boolean jeuEnCours = true;
         boucle:
         do  {
+
             for (Joueur joueurQuiDoitJouer : joueurs) {
                 Case caseChoisie;
                 int nombreEssaie = 0;
@@ -50,13 +46,13 @@ public class Morpion {
                     posePion = controleRegle.poserPion(caseChoisie);
                 } while (!posePion);
 
-                if (controleRegle.plateauComplet() || controleRegle.jeuGagne(caseChoisie)) {
+                if (controleRegle.jeuGagne(caseChoisie)) {
+                    System.out.println(joueurQuiDoitJouer + " a gagné ! Bravo !");
                     break boucle;
                 }
+
             }
 
         } while (!controleRegle.plateauComplet());
-        System.out.println("fini");
     }
-
 }

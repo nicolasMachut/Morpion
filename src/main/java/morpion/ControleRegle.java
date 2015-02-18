@@ -26,13 +26,12 @@ public class ControleRegle {
     }
 
     public boolean jeuGagne (Case caseChoisie) {
-        return verifierColonneGagnante(caseChoisie) != null || verifierLigneGagnante(caseChoisie) != null || verifierDiagonaleGagnante(caseChoisie) != null;
+        return verifierColonneGagnante(caseChoisie) || verifierLigneGagnante(caseChoisie) || verifierDiagonaleGagnante(caseChoisie);
     }
 
-    public String verifierLigneGagnante (Case caseChoisie) {
+    public boolean verifierLigneGagnante (Case caseChoisie) {
 
         Case[][] plateau = this.plateau.getPlateau();
-        String typePionGagnant = null;
         int yDepart = (caseChoisie.getY() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getY() - nbPionPourGagner) % 3;
         int yArrivee = (caseChoisie.getY() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getY() + nbPionPourGagner) % 3;
         int ligne = caseChoisie.getX();
@@ -48,17 +47,15 @@ public class ControleRegle {
             }
 
             if(nbPionsIdentiques == nbPionPourGagner){
-                typePionGagnant = plateau[ligne][caseChoisie.getY()].getPion().getType();
-                return typePionGagnant;
+                return true;
             }
         }
 
-        return typePionGagnant;
+        return false;
     }
 
-    public String verifierColonneGagnante (Case caseChoisie) {
+    public boolean verifierColonneGagnante (Case caseChoisie) {
         Case[][] plateau = this.plateau.getPlateau();
-        String typePionGagnant = null;
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
         int colonne = caseChoisie.getY();
@@ -74,14 +71,13 @@ public class ControleRegle {
             }
 
             if(nbPionsIdentiques == nbPionPourGagner){
-                typePionGagnant = plateau[caseChoisie.getX()][colonne].getPion().getType();
-                return typePionGagnant;
+                return true;
             }
         }
 
 
 
-        return typePionGagnant;
+        return false;
     }
 
     public boolean poserPion(Case caseChoisie) {
@@ -110,13 +106,11 @@ public class ControleRegle {
         return this.plateau.isComplet();
     }
 
-    public String verifierDiagonaleGagnante(Case caseChoisie) {
+    public boolean verifierDiagonaleGagnante(Case caseChoisie) {
         Case[][] plateau = this.plateau.getPlateau();
-        String typePionGagnant = null;
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
 
-        int colonne = caseChoisie.getY();
         int nbPionsIdentiques = 1;
 
         String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
@@ -129,8 +123,7 @@ public class ControleRegle {
             }
 
             if (nbPionsIdentiques == nbPionPourGagner) {
-                typePionGagnant = plateau[caseChoisie.getX()][colonne].getPion().getType();
-                return typePionGagnant;
+                return true;
             }
         }
 
@@ -145,11 +138,10 @@ public class ControleRegle {
             }
 
             if (nbPionsIdentiques == nbPionPourGagner) {
-                typePionGagnant = plateau[caseChoisie.getX()][colonne].getPion().getType();
-                return typePionGagnant;
+                return true;
             }
         }
 
-        return typePionGagnant;
+        return false;
     }
 }

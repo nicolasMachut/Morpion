@@ -44,7 +44,6 @@ public class Plateau {
         } else {
             throw new CaseOccupeeException();
         }
-
     }
 
     public void afficher() {

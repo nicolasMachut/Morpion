@@ -6,21 +6,21 @@ import java.util.Stack;
 /**
  * Created by nicolas on 07/01/15.
  */
-public class Joueur implements Comparable<Joueur>{
+public class Joueur implements Comparable<Joueur> {
 
-    private int numero;
+    private String type;
     private Stack<Pion> pions;
 
     public Joueur () {
 
     }
 
-    public Joueur (int numero) {
-        this.numero = numero;
+    public Joueur (String type) {
+        this.type = type;
     }
 
-    public int getNumero () {
-        return this.numero;
+    public String getType () {
+        return this.type;
     }
 
     public void creerPions(int nbPions, String typeDePion) {
@@ -43,25 +43,24 @@ public class Joueur implements Comparable<Joueur>{
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("generiques.Joueur"+this.numero+", saisir x : ");
+        System.out.println(this + ", saisir x : ");
         int x = scanner.nextInt();
-        System.out.println("generiques.Joueur"+this.numero+", saisir y : ");
+        System.out.println(this + ", saisir y : ");
         int y = scanner.nextInt();
 
         return new Case(x, y, pion);
     }
 
     public int compareTo(Joueur joueur) {
-        if (joueur.getNumero() > numero) {
+        if (!joueur.type.equals(type)) {
             return -1;
-        } else if (joueur.getNumero() == this.getNumero()) {
-            return 0;
         } else {
-            return 1;
+            return -1;
         }
+
     }
 
     public String toString () {
-        return "joueur"+this.getNumero();
+        return "joueur " + this.type;
     }
 }

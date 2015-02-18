@@ -11,7 +11,7 @@ public class Jeu {
     public static void main(String[] args) {
         new Morpion().demarrerPartie();
 
-        new Dames().demarrerPartie();
+        //new Dames().demarrerPartie();
     }
 
 }
