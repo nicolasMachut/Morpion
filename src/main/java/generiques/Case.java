@@ -10,15 +10,16 @@ public class Case {
     private Pion pion;
     private int x;
     private int y;
+    private String type;
 
     public Case() {
-
     }
 
     public Case(int x, int y, Pion pion) {
         this.x = x;
         this.y = y;
         this.pion = pion;
+        this.type = "";
     }
 
     public Pion getPion() {
@@ -44,4 +45,13 @@ public class Case {
     public String toString () {
         return "X : " + x + ", Y : " + y;
     }
+
+    public void setType (String type) {
+        this.type = type;
+    }
+
+    public String getType () {
+        return this.type;
+    }
+
 }

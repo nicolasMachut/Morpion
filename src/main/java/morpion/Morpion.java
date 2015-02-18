@@ -23,6 +23,14 @@ public class Morpion {
         creerPions();
     }
 
+    public ControleRegle getControleRegle () {
+        return this.controleRegle;
+    }
+
+    public Joueur[] getJoueurs () {
+        return this.joueurs;
+    }
+
     public void creerPions() {
         joueurs[0].creerPions(nbPions, "X");
         joueurs[1].creerPions(nbPions, "O");

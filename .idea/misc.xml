@@ -42,6 +42,13 @@
     <entry_points version="2.0" />
   </component>
   <component name="IdProvider" IDEtalkID="0A828D0B1BE7ADF6420D6D55E6FA9B7F" />
+  <component name="J2DDesignerComponent">
+    <graphics>
+      <graphicsVar>graphics</graphicsVar>
+      <widthVar>width</widthVar>
+      <heightVar>height</heightVar>
+    </graphics>
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

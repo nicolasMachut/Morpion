@@ -97,7 +97,7 @@ public class ControleRegle {
     }
 
     public void afficherPlateau() {
-        this.plateau.afficher();
+        this.plateau.afficherAvecPions();
     }
 
     public boolean plateauComplet() {
@@ -141,5 +141,9 @@ public class ControleRegle {
         }
 
         return false;
+    }
+
+    public Plateau getPlateau () {
+        return this.plateau;
     }
 }

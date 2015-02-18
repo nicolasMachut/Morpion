@@ -1,9 +1,15 @@
 package generiques;
 
+import javafx.fxml.FXML;
+import javafx.scene.shape.Rectangle;
+
 /**
  * Created by nicolas on 07/01/15.
  */
 public class Plateau {
+
+    @FXML
+    private Rectangle case00;
 
     private Case[][] plateau;
 
@@ -46,10 +52,20 @@ public class Plateau {
         }
     }
 
-    public void afficher() {
+    public void afficherAvecPions() {
         for (int i = 0; i < plateau.length; i ++) {
             for (int j = 0; j < plateau[i].length; j++) {
                 String affichable = plateau[i][j].getPion() != null ? plateau[i][j].getPion().getType() : "_";
+                System.out.print("|" + affichable);
+            }
+            System.out.println("|");
+        }
+    }
+
+    public void afficherAvecCases() {
+        for (int i = 0; i < plateau.length; i ++) {
+            for (int j = 0; j < plateau[i].length; j++) {
+                String affichable = plateau[i][j].getType();
                 System.out.print("|" + affichable);
             }
             System.out.println("|");

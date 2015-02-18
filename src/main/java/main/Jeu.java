@@ -1,6 +1,7 @@
 package main;
 
 import dames.Dames;
+import interface_graphique.Fenetre;
 import morpion.Morpion;
 
 /**
@@ -9,9 +10,11 @@ import morpion.Morpion;
 public class Jeu {
 
     public static void main(String[] args) {
-        new Morpion().demarrerPartie();
+        //new Morpion().demarrerPartie();
 
-        //new Dames().demarrerPartie();
+        //javafx.application.Application.launch(Fenetre.class);
+
+        new Dames().demarrerPartie();
     }
 
 }
