@@ -74,4 +74,11 @@ public class ControleRegle {
         Pion pion = plateau.getPion(coordonnees);
         return pion != null && pion.getType().equals(joueur.getType());
     }
+
+    public boolean verifMouvement(Joueur joueur, Coordonnees coordonnees) {
+        String couleurPion = joueur.getType();
+        String couleurCase = plateau.getCase(coordonnees).getType();
+
+        return couleurPion.equals(couleurCase);
+    }
 }

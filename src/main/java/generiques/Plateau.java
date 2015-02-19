@@ -77,4 +77,8 @@ public class Plateau {
 
         return plateau[coordonnees.getX()][coordonnees.getY()].getPion();
     }
+
+    public Case getCase(Coordonnees coordonnees) {
+        return plateau[coordonnees.getX()][coordonnees.getY()];
+    }
 }

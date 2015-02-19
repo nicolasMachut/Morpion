@@ -50,4 +50,6 @@ public class ControleRegleTest {
 
         assertFalse(this.controleRegle.verifPionJoueur(joueur, coordonnees));
     }
+
+
 }

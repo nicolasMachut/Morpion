@@ -18,7 +18,7 @@ public class Dames {
         this.controleRegle = new ControleRegle(new Plateau(NB_CASES));
         joueurs = new Joueur[NB_JOUEURS];
         joueurs[0] = new Joueur("Nicolas","B");
-        joueurs[1] = new Joueur("YanCédric","N");
+        joueurs[1] = new Joueur("YanCedric","N");
         try {
             controleRegle.ajouterPionsSurPlateau();
         } catch (Exception e) {
@@ -60,6 +60,10 @@ public class Dames {
             coordonneesDuPionaDeplacer = new Coordonnees(x, y);
 
         } while (controleRegle.verifPionJoueur(joueurQuiDoitJouer, coordonneesDuPionaDeplacer));
+
+        do {
+
+        } while (controleRegle.verifMouvement(joueurQuiDoitJouer, coordonneesDuPionaDeplacer));
 
 
 
