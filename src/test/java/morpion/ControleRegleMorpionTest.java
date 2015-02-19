@@ -61,7 +61,7 @@ public class ControleRegleMorpionTest {
         plateau.poserPion(coordonnees, new Pion("X", coordonnees));
         coordonnees = new Coordonnees(1, 1);
         plateau.poserPion(coordonnees, new Pion("X", coordonnees));
-        coordonnees = new Coordonnees(0, 1);
+        coordonnees = new Coordonnees(2, 0);
         plateau.poserPion(coordonnees, new Pion("X", coordonnees));
         assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(new Coordonnees(2, 0)));
     }
