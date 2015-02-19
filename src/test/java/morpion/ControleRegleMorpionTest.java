@@ -1,3 +1,5 @@
+package morpion;
+
 import static org.junit.Assert.*;
 
 import generiques.Case;

@@ -1,5 +1,6 @@
 package dames;
 
+import generiques.Case;
 import generiques.Joueur;
 import generiques.Plateau;
 
@@ -21,8 +22,26 @@ public class Dames {
         creerPions();
     }
 
+
     public void demarrerPartie() {
-        this.controleRegle.afficherPlateau();
+
+        Case caseChoisie = null;
+        do {
+
+            for (Joueur joueurQuiDoitJouer : joueurs) {
+                int nbEssais = 0;
+                boolean poserPion = false;
+                do {
+
+                    this.controleRegle.afficherPlateau();
+                    caseChoisie = joueurQuiDoitJouer.jouer(nbEssais);
+                    nbEssais++;
+                    poserPion = controleRegle.poserPion(caseChoisie);
+                } while (!poserPion);
+
+            }
+
+        } while (controleRegle.jeuFini());
     }
 
     private void creerPions () {

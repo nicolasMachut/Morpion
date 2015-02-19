@@ -1,3 +1,5 @@
+package generiques;
+
 import generiques.Case;
 import generiques.CaseOccupeeException;
 import generiques.Pion;
@@ -29,6 +31,26 @@ public class PlateauTest {
     public void testPoserPionCaseOccupee () throws Exception {
         this.plateau.poserPion(new Case(0, 0, new Pion("X")));
         this.plateau.poserPion(new Case(0, 0, new Pion("X")));
+    }
+
+    @Test
+    public void testPlateauCompletVrai () throws Exception {
+        this.remplirPlateau();
+        assertTrue(plateau.isComplet());
+    }
+
+    @Test
+    public void testPlateauCompletFaux () throws Exception {
+        plateau.poserPion(new Case(0, 0, new Pion("X")));
+        assertFalse(plateau.isComplet());
+    }
+
+    private void remplirPlateau () throws Exception {
+        for (int x = 0; x < plateau.getPlateau().length; x++) {
+            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+                plateau.poserPion(new Case(x, y, new Pion("X")));
+            }
+        }
     }
 
 }

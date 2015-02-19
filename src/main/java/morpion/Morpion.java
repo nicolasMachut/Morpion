@@ -38,7 +38,6 @@ public class Morpion {
 
     public void demarrerPartie () {
 
-        boolean jeuEnCours = true;
         boucle:
         do  {
 

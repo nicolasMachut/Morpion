@@ -16,15 +16,16 @@ public class Plateau {
     public Plateau (int nbCases) {
         int dimension =  (int)Math.sqrt(nbCases);
         plateau = new Case[dimension][dimension];
-        creerPlateau();
-    }
 
-    public void creerPlateau () {
-        for (int x = 0; x < plateau.length; x ++) {
-            for (int y = 0; y < plateau[x].length; y++ ) {
-                plateau[x][y] = new Case(x, y, null);
+        for (int x = 0; x < plateau.length; x++) {
+            for (int y = 0; y < plateau[x].length; y++) {
+                creerCase(new Case(x, y, null));
             }
         }
+    }
+
+    public void creerCase (Case caseACreer) {
+        plateau[caseACreer.getX()][caseACreer.getY()] = caseACreer;
     }
 
     public boolean isComplet () {

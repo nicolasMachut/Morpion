@@ -16,5 +16,4 @@ public class Jeu {
 
         new Dames().demarrerPartie();
     }
-
 }

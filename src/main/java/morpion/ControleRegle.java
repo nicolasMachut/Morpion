@@ -19,7 +19,6 @@ public class ControleRegle {
         this.nbPionPourGagner = nbPionsPourGagner;
     }
 
-
     public ControleRegle () {
         this.plateau = new Plateau(nbCaseParDefaut);
         this.nbPionPourGagner = nbPionPourGagnerParDefaut;

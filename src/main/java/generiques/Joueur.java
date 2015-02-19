@@ -55,7 +55,7 @@ public class Joueur implements Comparable<Joueur> {
         if (!joueur.type.equals(type)) {
             return -1;
         } else {
-            return -1;
+            return 0;
         }
 
     }
