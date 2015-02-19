@@ -19,8 +19,8 @@ public class Morpion {
     public Morpion() {
         this.controleRegle = new ControleRegle(new Plateau(nbCases), 3);
         joueurs = new Joueur[nbJoueurs];
-        joueurs[0] = new Joueur("X");
-        joueurs[1] = new Joueur("O");
+        joueurs[0] = new Joueur("Nicolas","X");
+        joueurs[1] = new Joueur("Edouard","O");
     }
 
     public ControleRegle getControleRegle () {

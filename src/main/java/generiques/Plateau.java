@@ -73,4 +73,8 @@ public class Plateau {
         }
     }
 
+    public Pion getPion(Coordonnees coordonnees) {
+
+        return plateau[coordonnees.getX()][coordonnees.getY()].getPion();
+    }
 }

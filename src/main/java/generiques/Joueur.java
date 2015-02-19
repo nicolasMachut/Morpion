@@ -12,7 +12,8 @@ public class Joueur {
 
     }
 
-    public Joueur (String type) {
+    public Joueur (String pseudo, String type) {
+        this.pseudo = pseudo;
         this.type = type;
     }
 

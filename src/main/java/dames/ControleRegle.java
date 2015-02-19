@@ -69,4 +69,9 @@ public class ControleRegle {
             throw new MouvementInvalideException();
         }
     }
+
+    public boolean verifPionJoueur(Joueur joueur, Coordonnees coordonnees) {
+        Pion pion = plateau.getPion(coordonnees);
+        return pion != null && pion.getType().equals(joueur.getType());
+    }
 }
