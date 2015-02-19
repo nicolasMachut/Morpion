@@ -1,8 +1,6 @@
 package morpion;
 
-import generiques.Case;
-import generiques.CaseOccupeeException;
-import generiques.Plateau;
+import generiques.*;
 
 /**
  * Created by nicolas on 07/01/15.
@@ -24,11 +22,11 @@ public class ControleRegle {
         this.nbPionPourGagner = nbPionPourGagnerParDefaut;
     }
 
-    public boolean jeuGagne (Case caseChoisie) {
-        return verifierColonneGagnante(caseChoisie) || verifierLigneGagnante(caseChoisie) || verifierDiagonaleGagnante(caseChoisie);
+    public boolean jeuGagne (Coordonnees coordonnees) {
+        return verifierColonneGagnante(coordonnees) || verifierLigneGagnante(coordonnees) || verifierDiagonaleGagnante(coordonnees);
     }
 
-    public boolean verifierLigneGagnante (Case caseChoisie) {
+    public boolean verifierLigneGagnante (Coordonnees caseChoisie) {
 
         Case[][] plateau = this.plateau.getPlateau();
         int yDepart = (caseChoisie.getY() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getY() - nbPionPourGagner) % 3;
@@ -53,7 +51,7 @@ public class ControleRegle {
         return false;
     }
 
-    public boolean verifierColonneGagnante (Case caseChoisie) {
+    public boolean verifierColonneGagnante (Coordonnees caseChoisie) {
         Case[][] plateau = this.plateau.getPlateau();
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
@@ -66,7 +64,7 @@ public class ControleRegle {
             if (plateau[x][colonne].getPion() != null && plateau[x][colonne].getPion().getType().equals(typePionPosee)){
                 nbPionsIdentiques++;
             } else {
-                nbPionsIdentiques =1;
+                nbPionsIdentiques = 0;
             }
 
             if(nbPionsIdentiques == nbPionPourGagner){
@@ -77,20 +75,20 @@ public class ControleRegle {
         return false;
     }
 
-    public boolean poserPion(Case caseChoisie) {
+    public boolean poserPion(Coordonnees coordonnees, Pion pion) {
 
         boolean pionPose = false;
 
         try {
-            plateau.poserPion(caseChoisie);
+            plateau.poserPion(coordonnees, pion);
             pionPose = true;
-        } catch (CaseOccupeeException e) {
+        } catch (MouvementInvalideException e) {
             System.out.println("La case est occupée ! ");
         } catch (Exception e) {
             System.out.println("La case n'existe pas ! ");
         }
 
-        verifierLigneGagnante(caseChoisie);
+        verifierLigneGagnante(coordonnees);
 
         return pionPose;
     }
@@ -103,14 +101,14 @@ public class ControleRegle {
         return this.plateau.isComplet();
     }
 
-    public boolean verifierDiagonaleGagnante(Case caseChoisie) {
+    public boolean verifierDiagonaleGagnante(Coordonnees coordonnees) {
         Case[][] plateau = this.plateau.getPlateau();
-        int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
-        int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
+        int xDepart = (coordonnees.getX() - nbPionPourGagner) < 0 ? 0 :  (coordonnees.getX() - nbPionPourGagner) % 3;
+        int xArrivee = (coordonnees.getX() + nbPionPourGagner) > 2 ? 2 : (coordonnees.getX() + nbPionPourGagner) % 3;
 
         int nbPionsIdentiques = 0;
 
-        String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
+        String typePionPosee = plateau[coordonnees.getX()][coordonnees.getY()].getPion().getType();
 
         for(int x=xDepart; x <= xArrivee; x++) {
             if (plateau[x][x].getPion() != null && plateau[x][x].getPion().getType().equals(typePionPosee)) {
@@ -124,8 +122,8 @@ public class ControleRegle {
             }
         }
 
-        int yDepart = (caseChoisie.getY() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getY() - nbPionPourGagner) % 3;
-        int yArrivee = (caseChoisie.getY() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getY() + nbPionPourGagner) % 3;
+        int yDepart = (coordonnees.getY() - nbPionPourGagner) < 0 ? 0 :  (coordonnees.getY() - nbPionPourGagner) % 3;
+        int yArrivee = (coordonnees.getY() + nbPionPourGagner) > 2 ? 2 : (coordonnees.getY() + nbPionPourGagner) % 3;
         for(int y=yArrivee; y >= yDepart; y--) {
             int yActuel = (nbPionPourGagner - (y + 1));
             if (plateau[yActuel][y].getPion() != null && plateau[yActuel][y].getPion().getType().equals(typePionPosee)) {

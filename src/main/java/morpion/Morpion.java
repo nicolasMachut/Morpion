@@ -1,8 +1,9 @@
 package morpion;
 
-import generiques.Case;
-import generiques.Joueur;
-import generiques.Plateau;
+import generiques.*;
+
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Created by nicolas on 07/01/15.
@@ -18,9 +19,8 @@ public class Morpion {
     public Morpion() {
         this.controleRegle = new ControleRegle(new Plateau(nbCases), 3);
         joueurs = new Joueur[nbJoueurs];
-        joueurs[0] = new Joueur("1");
-        joueurs[1] = new Joueur("2");
-        creerPions();
+        joueurs[0] = new Joueur("X");
+        joueurs[1] = new Joueur("O");
     }
 
     public ControleRegle getControleRegle () {
@@ -31,29 +31,22 @@ public class Morpion {
         return this.joueurs;
     }
 
-    public void creerPions() {
-        joueurs[0].creerPions(nbPions, "X");
-        joueurs[1].creerPions(nbPions, "O");
-    }
-
     public void demarrerPartie () {
 
         boucle:
         do  {
 
             for (Joueur joueurQuiDoitJouer : joueurs) {
-                Case caseChoisie;
-                int nombreEssaie = 0;
+                Coordonnees coordonneesChoisis = null;
                 boolean posePion = false;
 
                 do {
                     controleRegle.afficherPlateau();
-                    caseChoisie = joueurQuiDoitJouer.jouer(nombreEssaie);
-                    nombreEssaie++;
-                    posePion = controleRegle.poserPion(caseChoisie);
+                    coordonneesChoisis = jouer(joueurQuiDoitJouer);
+                    posePion = controleRegle.poserPion(coordonneesChoisis, new Pion(joueurQuiDoitJouer.getType()));
                 } while (!posePion);
 
-                if (controleRegle.jeuGagne(caseChoisie)) {
+                if (controleRegle.jeuGagne(coordonneesChoisis)) {
                     System.out.println(joueurQuiDoitJouer + " a gagné ! Bravo !");
                     break boucle;
                 }
@@ -63,5 +56,17 @@ public class Morpion {
         } while (!controleRegle.plateauComplet());
         this.controleRegle.afficherPlateau();
         System.out.println("La partie est fini ! N'hésitez pas à rejouer !!");
+    }
+
+    public Coordonnees jouer (Joueur joueur) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(joueur + ", saisir x : ");
+        int x = scanner.nextInt();
+        System.out.println(joueur + ", saisir y : ");
+        int y = scanner.nextInt();
+
+        return new Coordonnees(x, y);
     }
 }

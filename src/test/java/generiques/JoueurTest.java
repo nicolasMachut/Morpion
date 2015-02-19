@@ -16,13 +16,6 @@ public class JoueurTest {
     }
 
     @Test
-    public void testCreerPions () {
-        joueur.creerPions(10, "X");
-
-
-    }
-
-    @Test
     public void testJouer () {
 
     }

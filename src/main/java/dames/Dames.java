@@ -2,6 +2,7 @@ package dames;
 
 import generiques.Case;
 import generiques.Joueur;
+import generiques.Pion;
 import generiques.Plateau;
 
 /**
@@ -19,33 +20,35 @@ public class Dames {
         joueurs = new Joueur[NB_JOUEURS];
         joueurs[0] = new Joueur("blanc");
         joueurs[1] = new Joueur("noir");
-        creerPions();
+        try {
+            controleRegle.ajouterPionsSurPlateau();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
 
     public void demarrerPartie() {
 
         Case caseChoisie = null;
         do {
+            this.controleRegle.afficherPlateauAvecCases();
 
             for (Joueur joueurQuiDoitJouer : joueurs) {
-                int nbEssais = 0;
                 boolean poserPion = false;
                 do {
-
-                    this.controleRegle.afficherPlateau();
-                    caseChoisie = joueurQuiDoitJouer.jouer(nbEssais);
-                    nbEssais++;
-                    poserPion = controleRegle.poserPion(caseChoisie);
+                    this.controleRegle.afficherPlateauAvecPions();
+                    return;
                 } while (!poserPion);
 
             }
 
-        } while (controleRegle.jeuFini());
+        } while (!jeuFini());
     }
 
-    private void creerPions () {
-        joueurs[0].creerPions(10, joueurs[0].getType());
-        joueurs[1].creerPions(10, joueurs[1].getType());
+    private boolean jeuFini() {
+        return false;
     }
 }

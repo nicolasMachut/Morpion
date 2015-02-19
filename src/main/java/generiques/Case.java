@@ -1,7 +1,5 @@
 package generiques;
 
-import generiques.Pion;
-
 /**
  * Created by nicolas on 07/01/15.
  */
@@ -15,10 +13,10 @@ public class Case {
     public Case() {
     }
 
-    public Case(int x, int y, Pion pion) {
+    public Case(int x, int y) {
         this.x = x;
         this.y = y;
-        this.pion = pion;
+        this.pion = null;
         this.type = "";
     }
 
@@ -43,7 +41,7 @@ public class Case {
     }
 
     public String toString () {
-        return "X : " + x + ", Y : " + y;
+        return "X : " + x + ", Y : " + y + " type : " +type;
     }
 
     public void setType (String type) {

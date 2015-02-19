@@ -19,7 +19,7 @@ public class Plateau {
 
         for (int x = 0; x < plateau.length; x++) {
             for (int y = 0; y < plateau[x].length; y++) {
-                creerCase(new Case(x, y, null));
+                creerCase(new Case(x, y));
             }
         }
     }
@@ -44,12 +44,12 @@ public class Plateau {
         return plateau;
     }
 
-    public void poserPion(Case caseChoisie) throws Exception {
+    public void poserPion(Coordonnees coordonnees, Pion pion) throws Exception {
 
-        if (plateau[caseChoisie.getX()][caseChoisie.getY()].estLibre()) {
-            this.plateau[caseChoisie.getX()][caseChoisie.getY()].poserPion(caseChoisie.getPion());
+        if (plateau[coordonnees.getX()][coordonnees.getY()].estLibre()) {
+            this.plateau[coordonnees.getX()][coordonnees.getY()].poserPion(pion);
         } else {
-            throw new CaseOccupeeException();
+            throw new MouvementInvalideException("La case " + coordonnees.getX() + "."+coordonnees.getY() + " est occuppée.");
         }
     }
 
@@ -72,5 +72,5 @@ public class Plateau {
             System.out.println("|");
         }
     }
-}
 
+}

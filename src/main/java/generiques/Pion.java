@@ -14,4 +14,8 @@ public class Pion {
     public String getType() {
         return type;
     }
+
+    public String toString () {
+        return "type : " + type;
+    }
 }

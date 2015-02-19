@@ -1,7 +1,6 @@
 package dames;
 
-import generiques.Case;
-import generiques.Plateau;
+import generiques.*;
 
 /**
  * Created by nicolas on 17/02/15.
@@ -20,37 +19,52 @@ public class ControleRegle {
         for (int x = 0; x < plateau.getPlateau().length; x++) {
             for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
                 if ((x + y) % 2 == 0) {
-                    plateau.getPlateau()[x][y].setType("b");
+                    plateau.getPlateau()[x][y].setType("B");
                 } else {
-                    plateau.getPlateau()[x][y].setType("n");
+                    plateau.getPlateau()[x][y].setType("N");
                 }
             }
         }
     }
 
-    public void ajouterPionsSurPlateau () {
-
-    }
-
-    public void afficherPlateau () {
+    public void afficherPlateauAvecCases() {
         this.plateau.afficherAvecCases();
     }
 
-    public Plateau getPlateau () {
-        return this.plateau;
+    public void afficherPlateauAvecPions () {
+        this.plateau.afficherAvecPions();
     }
 
-    public boolean jeuFini() {
-        return false;
-    }
-
-    public boolean poserPion(Case caseChoisie) {
-
-        try {
-            this.plateau.poserPion(caseChoisie);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void ajouterPionsSurPlateau() throws Exception {
+        int x = 0;
+        while (x < 4) {
+            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+                if ((x + y) % 2 != 0) {
+                    plateau.poserPion(new Coordonnees(x, y), new Pion("N"));
+                }
+            }
+            x++;
         }
-        return true;
+
+        x = 6;
+        while (x < 10) {
+            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+                if ((x + y) % 2 != 0) {
+                    poserPion(new Coordonnees(x, y), new Pion("B"));
+                }
+            }
+            x++;
+        }
+    }
+
+    public void poserPion (Coordonnees coordonnees, Pion pion) throws Exception {
+        Case caseChoisie = this.plateau.getPlateau()[coordonnees.getX()][coordonnees.getY()];
+        String typePion = pion.getType();
+        String couleurCase = caseChoisie.getType();
+        if (!couleurCase.equals(typePion)) {
+            this.plateau.poserPion(coordonnees, pion);
+        } else {
+            throw new MouvementInvalideException();
+        }
     }
 }

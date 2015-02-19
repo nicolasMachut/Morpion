@@ -3,6 +3,7 @@ package morpion;
 import static org.junit.Assert.*;
 
 import generiques.Case;
+import generiques.Coordonnees;
 import generiques.Pion;
 import generiques.Plateau;
 import morpion.ControleRegle;
@@ -23,37 +24,33 @@ public class ControleRegleMorpionTest {
 
     @Test
     public void testUneLigneGagnante() throws Exception {
-        plateau.poserPion(new Case(0, 0, new Pion("X")));
-        plateau.poserPion(new Case(0, 2, new Pion("X")));
-        Case caseChoisie = new Case(0, 1, new Pion("X"));
-        plateau.poserPion(caseChoisie);
-        assertEquals(true, new ControleRegle(plateau, 3).verifierLigneGagnante(caseChoisie));
+        plateau.poserPion(new Coordonnees(0, 0), new Pion("X"));
+        plateau.poserPion(new Coordonnees(0, 2), new Pion("X"));
+        plateau.poserPion(new Coordonnees(0, 1), new Pion("X"));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierLigneGagnante(new Coordonnees(0, 1)));
     }
 
     @Test
     public void testUneColonneGagnante() throws Exception{
-        plateau.poserPion(new Case(0, 1, new Pion("X")));
-        plateau.poserPion(new Case(1, 1, new Pion("X")));
-        Case caseChoisie = new Case(2, 1, new Pion("X"));
-        plateau.poserPion(caseChoisie);
-        assertEquals(true, new ControleRegle(plateau, 3).verifierColonneGagnante(caseChoisie));
+        plateau.poserPion(new Coordonnees(0, 1), new Pion("Y"));
+        plateau.poserPion(new Coordonnees(1, 1), new Pion("Y"));
+        plateau.poserPion(new Coordonnees(2, 1), new Pion("Y"));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierColonneGagnante(new Coordonnees(2, 1)));
     }
 
     @Test
     public void testDiagonaleGaucheGagnante () throws Exception {
-        plateau.poserPion(new Case(0, 0, new Pion("X")));
-        plateau.poserPion(new Case(1, 1, new Pion("X")));
-        Case caseChoisie = new Case(2, 2, new Pion("X"));
-        plateau.poserPion(caseChoisie);
-        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
+        plateau.poserPion(new Coordonnees(0, 0), new Pion("X"));
+        plateau.poserPion(new Coordonnees(1, 1), new Pion("X"));
+        plateau.poserPion(new Coordonnees(2, 2), new Pion("X"));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(new Coordonnees(2, 2)));
     }
 
     @Test
     public void testDiagonaleDroiteGagnante () throws Exception {
-        plateau.poserPion(new Case(0, 2, new Pion("X")));
-        plateau.poserPion(new Case(1, 1, new Pion("X")));
-        Case caseChoisie = new Case(2, 0, new Pion("X"));
-        plateau.poserPion(caseChoisie);
-        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(caseChoisie));
+        plateau.poserPion(new Coordonnees(0, 2), new Pion("X"));
+        plateau.poserPion(new Coordonnees(1, 1), new Pion("X"));
+        plateau.poserPion(new Coordonnees(2, 0), new Pion("X"));
+        assertEquals(true, new ControleRegle(plateau, 3).verifierDiagonaleGagnante(new Coordonnees(2, 0)));
     }
 }
