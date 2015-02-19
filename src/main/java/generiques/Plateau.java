@@ -8,9 +8,6 @@ import javafx.scene.shape.Rectangle;
  */
 public class Plateau {
 
-    @FXML
-    private Rectangle case00;
-
     private Case[][] plateau;
 
     public Plateau (int nbCases) {
@@ -55,6 +52,11 @@ public class Plateau {
 
     public void afficherAvecPions() {
         for (int i = 0; i < plateau.length; i ++) {
+            System.out.print(i + "-");
+        }
+        System.out.println();
+            for (int i = 0; i < plateau.length; i ++) {
+            System.out.print(i + "-");
             for (int j = 0; j < plateau[i].length; j++) {
                 String affichable = plateau[i][j].getPion() != null ? plateau[i][j].getPion().getType() : "_";
                 System.out.print("|" + affichable);
@@ -80,5 +82,12 @@ public class Plateau {
 
     public Case getCase(Coordonnees coordonnees) {
         return plateau[coordonnees.getX()][coordonnees.getY()];
+    }
+
+    public void deplacerPion(Coordonnees coordonneesPion, Coordonnees coordonneesCase) throws Exception {
+        Case casePrecedente = plateau[coordonneesPion.getX()][coordonneesPion.getY()];
+        Pion pion =  casePrecedente.getPion();
+        casePrecedente.viderCase();
+        poserPion(coordonneesCase,pion);
     }
 }

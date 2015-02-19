@@ -36,7 +36,7 @@ public class ControleRegleTest {
     @Test
     public void testVerifPionEmptyJoueur() throws Exception {
         Joueur joueur = new Joueur("Nicolas","B");
-        Coordonnees coordonnees = new Coordonnees(0, 0);
+        Coordonnees coordonnees = new Coordonnees(5, 0);
         this.controleRegle.ajouterPionsSurPlateau();
 
         assertFalse(this.controleRegle.verifPionJoueur(joueur, coordonnees));

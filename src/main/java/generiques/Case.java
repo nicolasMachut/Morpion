@@ -52,4 +52,7 @@ public class Case {
         return this.type;
     }
 
+    public void viderCase() {
+        this.pion = null;
+    }
 }

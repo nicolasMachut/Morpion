@@ -78,7 +78,13 @@ public class ControleRegle {
     public boolean verifMouvement(Joueur joueur, Coordonnees coordonnees) {
         String couleurPion = joueur.getType();
         String couleurCase = plateau.getCase(coordonnees).getType();
+        boolean caseVide = plateau.getCase(coordonnees).getPion() == null;
+        boolean couleurOk = !couleurPion.equals(couleurCase);
 
-        return couleurPion.equals(couleurCase);
+        return caseVide && couleurOk;
+    }
+
+    public void deplacerPion(Coordonnees coordonneesPion, Coordonnees coordonneesCase) throws Exception {
+        plateau.deplacerPion(coordonneesPion, coordonneesCase);
     }
 }
