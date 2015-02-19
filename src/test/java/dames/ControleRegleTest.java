@@ -25,11 +25,29 @@ public class ControleRegleTest {
     }
 
     @Test
-    public void testVerifPionJoueur() throws Exception {
+    public void testVerifPionJoueurOK() throws Exception {
         Joueur joueur = new Joueur("Nicolas","B");
         Coordonnees coordonnees = new Coordonnees(6, 1);
         this.controleRegle.ajouterPionsSurPlateau();
 
         assertTrue(this.controleRegle.verifPionJoueur(joueur, coordonnees));
+    }
+
+    @Test
+    public void testVerifPionEmptyJoueur() throws Exception {
+        Joueur joueur = new Joueur("Nicolas","B");
+        Coordonnees coordonnees = new Coordonnees(0, 0);
+        this.controleRegle.ajouterPionsSurPlateau();
+
+        assertFalse(this.controleRegle.verifPionJoueur(joueur, coordonnees));
+    }
+
+    @Test
+    public void testVerifPionAdversaire() throws Exception {
+        Joueur joueur = new Joueur("Nicolas","N");
+        Coordonnees coordonnees = new Coordonnees(6, 1);
+        this.controleRegle.ajouterPionsSurPlateau();
+
+        assertFalse(this.controleRegle.verifPionJoueur(joueur, coordonnees));
     }
 }
