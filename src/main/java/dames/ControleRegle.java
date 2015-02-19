@@ -40,7 +40,8 @@ public class ControleRegle {
         while (x < 4) {
             for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
                 if ((x + y) % 2 != 0) {
-                    plateau.poserPion(new Coordonnees(x, y), new Pion("N"));
+                    Coordonnees coordonnees = new Coordonnees(x, y);
+                    plateau.poserPion(coordonnees, new Pion("N", coordonnees));
                 }
             }
             x++;
@@ -50,7 +51,8 @@ public class ControleRegle {
         while (x < 10) {
             for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
                 if ((x + y) % 2 != 0) {
-                    poserPion(new Coordonnees(x, y), new Pion("B"));
+                    Coordonnees coordonnees = new Coordonnees(x, y);
+                    poserPion(coordonnees, new Pion("B", coordonnees));
                 }
             }
             x++;

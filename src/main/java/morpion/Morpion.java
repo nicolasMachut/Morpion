@@ -43,7 +43,7 @@ public class Morpion {
                 do {
                     controleRegle.afficherPlateau();
                     coordonneesChoisis = jouer(joueurQuiDoitJouer);
-                    posePion = controleRegle.poserPion(coordonneesChoisis, new Pion(joueurQuiDoitJouer.getType()));
+                    posePion = controleRegle.poserPion(coordonneesChoisis, new Pion(joueurQuiDoitJouer.getType(), coordonneesChoisis));
                 } while (!posePion);
 
                 if (controleRegle.jeuGagne(coordonneesChoisis)) {

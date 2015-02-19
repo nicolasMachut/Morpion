@@ -21,6 +21,6 @@ public class ControleRegleTest {
 
     @Test(expected = MouvementInvalideException.class)
     public void testPoserPion () throws Exception {
-        this.controleRegle.poserPion(new Coordonnees(0, 0), new Pion("B"));
+        this.controleRegle.poserPion(new Coordonnees(0, 0), new Pion("B", new Coordonnees(0, 0)));
     }
 }
