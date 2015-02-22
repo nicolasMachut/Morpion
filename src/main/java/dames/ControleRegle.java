@@ -16,12 +16,13 @@ public class ControleRegle {
     }
 
     public void creerCases () {
-        for (int x = 0; x < plateau.getPlateau().length; x++) {
-            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+        for (int x = 0; x < plateau.getTaille(); x++) {
+            for (int y = 0; y < plateau.getTaille(); y++) {
+                Coordonnees coordonnees = new Coordonnees(x, y);
                 if ((x + y) % 2 == 0) {
-                    plateau.getPlateau()[x][y].setType("B");
+                    plateau.getCase(coordonnees).setType("B");
                 } else {
-                    plateau.getPlateau()[x][y].setType("N");
+                    plateau.getCase(coordonnees).setType("N");
                 }
             }
         }
@@ -38,7 +39,7 @@ public class ControleRegle {
     public void ajouterPionsSurPlateau() throws Exception {
         int x = 0;
         while (x < 4) {
-            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+            for (int y = 0; y < plateau.getTaille(); y++) {
                 if ((x + y) % 2 != 0) {
                     Coordonnees coordonnees = new Coordonnees(x, y);
                     plateau.poserPion(coordonnees, new Pion("N", coordonnees));
@@ -49,7 +50,7 @@ public class ControleRegle {
 
         x = 6;
         while (x < 10) {
-            for (int y = 0; y < plateau.getPlateau()[x].length; y++) {
+            for (int y = 0; y < plateau.getTaille(); y++) {
                 if ((x + y) % 2 != 0) {
                     Coordonnees coordonnees = new Coordonnees(x, y);
                     poserPion(coordonnees, new Pion("B", coordonnees));
@@ -60,7 +61,7 @@ public class ControleRegle {
     }
 
     public void poserPion (Coordonnees coordonnees, Pion pion) throws Exception {
-        Case caseChoisie = this.plateau.getPlateau()[coordonnees.getX()][coordonnees.getY()];
+        Case caseChoisie = this.plateau.getCase(coordonnees);
         String typePion = pion.getType();
         String couleurCase = caseChoisie.getType();
         if (!couleurCase.equals(typePion)) {
@@ -71,7 +72,7 @@ public class ControleRegle {
     }
 
     public boolean verifPionJoueur(Joueur joueur, Coordonnees coordonnees) {
-        Pion pion = plateau.getPion(coordonnees);
+        Pion pion = plateau.getCase(coordonnees).getPion();
         return pion != null && pion.getType().equals(joueur.getType());
     }
 

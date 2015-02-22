@@ -12,8 +12,4 @@ public class MouvementInvalideException extends Exception {
     public MouvementInvalideException(String message) {
         super(message);
     }
-
-
-
-
 }

@@ -28,16 +28,16 @@ public class ControleRegle {
 
     public boolean verifierLigneGagnante (Coordonnees caseChoisie) {
 
-        Case[][] plateau = this.plateau.getPlateau();
         int yDepart = (caseChoisie.getY() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getY() - nbPionPourGagner) % 3;
         int yArrivee = (caseChoisie.getY() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getY() + nbPionPourGagner) % 3;
         int ligne = caseChoisie.getX();
         int nbPionsIdentiques = 0;
 
-        String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
+        String typePionPosee = this.plateau.getCase(caseChoisie).getPion().getType();
 
         for(int y=yDepart; y <= yArrivee; y++){
-            if (plateau[ligne][y].getPion() != null && plateau[ligne][y].getPion().getType().equals(typePionPosee)){
+            Coordonnees coordonnees = new Coordonnees(ligne, y);
+            if (plateau.getCase(coordonnees).getPion() != null && plateau.getCase(coordonnees).getPion().getType().equals(typePionPosee)){
                 nbPionsIdentiques++;
             } else {
                 nbPionsIdentiques =0;
@@ -52,16 +52,16 @@ public class ControleRegle {
     }
 
     public boolean verifierColonneGagnante (Coordonnees caseChoisie) {
-        Case[][] plateau = this.plateau.getPlateau();
         int xDepart = (caseChoisie.getX() - nbPionPourGagner) < 0 ? 0 :  (caseChoisie.getX() - nbPionPourGagner) % 3;
         int xArrivee = (caseChoisie.getX() + nbPionPourGagner) > 2 ? 2 : (caseChoisie.getX() + nbPionPourGagner) % 3;
         int colonne = caseChoisie.getY();
         int nbPionsIdentiques = 0;
 
-        String typePionPosee = plateau[caseChoisie.getX()][caseChoisie.getY()].getPion().getType();
+        String typePionPosee = plateau.getCase(caseChoisie).getPion().getType();
 
         for(int x = xDepart; x <= xArrivee; x++){
-            if (plateau[x][colonne].getPion() != null && plateau[x][colonne].getPion().getType().equals(typePionPosee)){
+            Coordonnees coordonnees = new Coordonnees(x, colonne);
+            if (plateau.getCase(coordonnees).getPion() != null && plateau.getCase(coordonnees).getPion().getType().equals(typePionPosee)){
                 nbPionsIdentiques++;
             } else {
                 nbPionsIdentiques = 0;
@@ -102,16 +102,16 @@ public class ControleRegle {
     }
 
     public boolean verifierDiagonaleGagnante(Coordonnees coordonnees) {
-        Case[][] plateau = this.plateau.getPlateau();
         int xDepart = (coordonnees.getX() - nbPionPourGagner) < 0 ? 0 :  (coordonnees.getX() - nbPionPourGagner) % 3;
         int xArrivee = (coordonnees.getX() + nbPionPourGagner) > 2 ? 2 : (coordonnees.getX() + nbPionPourGagner) % 3;
 
         int nbPionsIdentiques = 0;
 
-        String typePionPosee = plateau[coordonnees.getX()][coordonnees.getY()].getPion().getType();
+        String typePionPosee = plateau.getCase(coordonnees).getPion().getType();
 
         for(int x=xDepart; x <= xArrivee; x++) {
-            if (plateau[x][x].getPion() != null && plateau[x][x].getPion().getType().equals(typePionPosee)) {
+            Coordonnees coordonnees1 = new Coordonnees(x, x);
+            if (plateau.getCase(coordonnees).getPion() != null && plateau.getCase(coordonnees).getPion().getType().equals(typePionPosee)) {
                 nbPionsIdentiques++;
             } else {
                 nbPionsIdentiques = 1;
@@ -124,9 +124,11 @@ public class ControleRegle {
 
         int yDepart = (coordonnees.getY() - nbPionPourGagner) < 0 ? 0 :  (coordonnees.getY() - nbPionPourGagner) % 3;
         int yArrivee = (coordonnees.getY() + nbPionPourGagner) > 2 ? 2 : (coordonnees.getY() + nbPionPourGagner) % 3;
+
         for(int y=yArrivee; y >= yDepart; y--) {
             int yActuel = (nbPionPourGagner - (y + 1));
-            if (plateau[yActuel][y].getPion() != null && plateau[yActuel][y].getPion().getType().equals(typePionPosee)) {
+            coordonnees = new Coordonnees(yActuel, y);
+            if (plateau.getCase(coordonnees).getPion() != null && plateau.getCase(coordonnees).getPion().getType().equals(typePionPosee)) {
                 nbPionsIdentiques++;
             } else {
                 nbPionsIdentiques = 1;

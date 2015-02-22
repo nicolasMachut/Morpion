@@ -26,12 +26,8 @@ public class Dames {
         }
     }
 
-
-
-
     public void demarrerPartie() {
 
-        Case caseChoisie = null;
         do {
             this.controleRegle.afficherPlateauAvecCases();
 
@@ -44,9 +40,7 @@ public class Dames {
     }
 
     private void jouer(Joueur joueurQuiDoitJouer) {
-        Coordonnees coordonneesPion, coordonneesCase = null;
-        String coordonneesBrut = "";
-        int x, y = 0;
+        Coordonnees coordonneesPion, coordonneesCase;
 
         Scanner scan = new Scanner(System.in);
         System.out.println("A ton tour "+joueurQuiDoitJouer.getPseudo());
@@ -71,14 +65,14 @@ public class Dames {
         int y;
         Coordonnees coordonneesPion;
         do {
-            System.out.print("Saisir les coordonnées du pion ( x ,y ): ");
+            System.out.print("Saisir les coordonnées du pion ( x,y ) : ");
             coordonneesBrut = scan.next();
             System.out.println("");
 
             x = Integer.valueOf(coordonneesBrut.split(",")[0]);
             y = Integer.valueOf(coordonneesBrut.split(",")[1]);
 
-            coordonneesPion= new Coordonnees(x, y);
+            coordonneesPion = new Coordonnees(x, y);
 
         } while (!controleRegle.verifPionJoueur(joueurQuiDoitJouer, coordonneesPion));
         return coordonneesPion;

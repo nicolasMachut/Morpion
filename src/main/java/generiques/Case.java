@@ -6,30 +6,20 @@ package generiques;
 public class Case {
 
     private Pion pion;
-    private int x;
-    private int y;
     private String type;
+    private Coordonnees coordonnees;
 
     public Case() {
     }
 
-    public Case(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Case(Coordonnees coordonnees) {
         this.pion = null;
         this.type = "";
+        this.coordonnees = coordonnees;
     }
 
     public Pion getPion() {
         return pion;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public boolean estLibre () {
@@ -41,7 +31,7 @@ public class Case {
     }
 
     public String toString () {
-        return "X : " + x + ", Y : " + y + " type : " +type;
+        return coordonnees + " type : " +type;
     }
 
     public void setType (String type) {
@@ -50,6 +40,10 @@ public class Case {
 
     public String getType () {
         return this.type;
+    }
+
+    public Coordonnees getCoordonnees () {
+        return this.coordonnees;
     }
 
     public void viderCase() {

@@ -16,13 +16,13 @@ public class Plateau {
 
         for (int x = 0; x < plateau.length; x++) {
             for (int y = 0; y < plateau[x].length; y++) {
-                creerCase(new Case(x, y));
+                creerCase(new Case(new Coordonnees(x, y)));
             }
         }
     }
 
     public void creerCase (Case caseACreer) {
-        plateau[caseACreer.getX()][caseACreer.getY()] = caseACreer;
+        plateau[caseACreer.getCoordonnees().getX()][caseACreer.getCoordonnees().getY()] = caseACreer;
     }
 
     public boolean isComplet () {
@@ -37,10 +37,6 @@ public class Plateau {
         return true;
     }
 
-    public Case[][] getPlateau() {
-        return plateau;
-    }
-
     public void poserPion(Coordonnees coordonnees, Pion pion) throws Exception {
 
         if (plateau[coordonnees.getX()][coordonnees.getY()].estLibre()) {
@@ -51,6 +47,7 @@ public class Plateau {
     }
 
     public void afficherAvecPions() {
+        System.out.print("   ");
         for (int i = 0; i < plateau.length; i ++) {
             System.out.print(i + "-");
         }
@@ -75,11 +72,6 @@ public class Plateau {
         }
     }
 
-    public Pion getPion(Coordonnees coordonnees) {
-
-        return plateau[coordonnees.getX()][coordonnees.getY()].getPion();
-    }
-
     public Case getCase(Coordonnees coordonnees) {
         return plateau[coordonnees.getX()][coordonnees.getY()];
     }
@@ -89,5 +81,9 @@ public class Plateau {
         Pion pion =  casePrecedente.getPion();
         casePrecedente.viderCase();
         poserPion(coordonneesCase,pion);
+    }
+
+    public int getTaille () {
+        return this.plateau.length;
     }
 }
