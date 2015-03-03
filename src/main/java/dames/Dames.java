@@ -19,14 +19,19 @@ public class Dames {
         joueurs = new Joueur[NB_JOUEURS];
         joueurs[0] = new Joueur("Nicolas","B");
         joueurs[1] = new Joueur("YanCedric","N");
+
         try {
             controleRegle.ajouterPionsSurPlateau();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void demarrerPartie() {
+    	
+    	System.out.println(joueurs[0]);
+    	System.out.println(joueurs[1]);
 
         do {
             this.controleRegle.afficherPlateauAvecCases();
@@ -46,7 +51,8 @@ public class Dames {
         System.out.println("A ton tour "+joueurQuiDoitJouer.getPseudo());
 
         coordonneesPion = prendrePion(joueurQuiDoitJouer, scan);
-        coordonneesCase = mouvement(joueurQuiDoitJouer, scan);
+        coordonneesCase = mouvement(joueurQuiDoitJouer, scan, coordonneesPion);
+        
         if(coordonneesCase == null){
             jouer(joueurQuiDoitJouer);
         }
@@ -56,32 +62,36 @@ public class Dames {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private Coordonnees prendrePion(Joueur joueurQuiDoitJouer, Scanner scan) {
         String coordonneesBrut;
-        int x;
-        int y;
-        Coordonnees coordonneesPion;
+        int x = 0;
+        int y = 0;
+        Coordonnees coordonneesPion = null;
+        
         do {
             System.out.print("Saisir les coordonnées du pion ( x,y ) : ");
             coordonneesBrut = scan.next();
             System.out.println("");
 
-            x = Integer.valueOf(coordonneesBrut.split(",")[0]);
-            y = Integer.valueOf(coordonneesBrut.split(",")[1]);
-
-            coordonneesPion = new Coordonnees(x, y);
+            try {
+            	 x = Integer.valueOf(coordonneesBrut.split(",")[0].trim());
+                 y = Integer.valueOf(coordonneesBrut.split(",")[1].trim());
+                 coordonneesPion = new Coordonnees(x, y);
+            } catch (Exception e) {
+            	System.out.println(joueurQuiDoitJouer.getPseudo() + " : Les coordonnées saisis ne sont pas valides !");
+            }
 
         } while (!controleRegle.verifPionJoueur(joueurQuiDoitJouer, coordonneesPion));
         return coordonneesPion;
     }
+    
 
-    private Coordonnees mouvement(Joueur joueurQuiDoitJouer, Scanner scan) {
+    private Coordonnees mouvement(Joueur joueurQuiDoitJouer, Scanner scan, Coordonnees coordonneesPion) {
         String coordonneesBrut;
-        int x;
-        int y;
+        int x = 0;
+        int y = 0;
         Coordonnees coordonneesCase;
         do {
             System.out.print("Saisir les coordonnées de la case (x ,y) | changer : ");
@@ -92,11 +102,16 @@ public class Dames {
                 return null;
             }
 
-            x = Integer.valueOf(coordonneesBrut.split(",")[0]);
-            y = Integer.valueOf(coordonneesBrut.split(",")[1]);
+            try {
+            	x = Integer.valueOf(coordonneesBrut.split(",")[0].trim());
+                y = Integer.valueOf(coordonneesBrut.split(",")[1].trim());
+            } catch (Exception e) {
+            	System.out.println(joueurQuiDoitJouer.getPseudo() + " : Les coordonnées saisis ne sont pas valides !");
+            }
+            
             coordonneesCase = new Coordonnees(x, y);
 
-        } while (!controleRegle.verifMouvement(joueurQuiDoitJouer, coordonneesCase));
+        } while (!controleRegle.verifMouvement(joueurQuiDoitJouer, coordonneesCase, coordonneesPion));
         return coordonneesCase;
     }
 

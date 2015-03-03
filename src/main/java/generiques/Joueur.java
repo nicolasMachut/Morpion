@@ -22,7 +22,7 @@ public class Joueur {
     }
 
     public String toString () {
-        return "joueur " + this.type;
+        return "joueur : " + this.pseudo + " type : " + this.type;
     }
 
     public String getPseudo () {

@@ -24,5 +24,16 @@ public class Coordonnees {
     public String toString () {
         return "x : " + x + " " + "y : " + y;
     }
-
+    
+    @Override
+    public boolean equals (Object c) {
+    	
+    	if (!(c instanceof Coordonnees)) {
+    		return false;
+    	}
+    	
+    	Coordonnees coordonnees = (Coordonnees) c;
+    	
+    	return coordonnees.getX() == this.x && coordonnees.getY() == this.y;
+    }
 }

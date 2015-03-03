@@ -1,7 +1,5 @@
 package generiques;
 
-import javafx.fxml.FXML;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Created by nicolas on 07/01/15.
@@ -85,5 +83,14 @@ public class Plateau {
 
     public int getTaille () {
         return this.plateau.length;
+    }
+    
+    public boolean coordonneesExiste (Coordonnees coordonnees) {
+    	try {
+    		getCase(coordonnees);
+    		return true;
+    	} catch (Exception e) {
+    		return false;
+    	}
     }
 }

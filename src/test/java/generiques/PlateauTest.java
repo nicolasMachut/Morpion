@@ -20,15 +20,15 @@ public class PlateauTest {
     @Test
     public void testPoserPionAvecSucces () throws Exception {
         Coordonnees coordonnees = new Coordonnees(0, 0);
-        this.plateau.poserPion(coordonnees, new Pion("X",coordonnees));
+        this.plateau.poserPion(coordonnees, new Pion("X"));
         assertNotNull(this.plateau.getCase(coordonnees).getPion());
     }
 
     @Test(expected = MouvementInvalideException.class)
     public void testPoserPionCaseOccupee () throws Exception {
         Coordonnees coordonnees = new Coordonnees(0, 0);
-        this.plateau.poserPion(coordonnees, new Pion("X",coordonnees));
-        this.plateau.poserPion(coordonnees, new Pion("X",coordonnees));
+        this.plateau.poserPion(coordonnees, new Pion("X"));
+        this.plateau.poserPion(coordonnees, new Pion("X"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class PlateauTest {
     @Test
     public void testPlateauCompletFaux () throws Exception {
         Coordonnees coordonnees = new Coordonnees(0, 0);
-        plateau.poserPion(coordonnees, new Pion("X",coordonnees));
+        plateau.poserPion(coordonnees, new Pion("X"));
         assertFalse(plateau.isComplet());
     }
 
@@ -48,8 +48,14 @@ public class PlateauTest {
         for (int x = 0; x < this.plateau.getTaille(); x++) {
             for (int y = 0; y < this.plateau.getTaille(); y++) {
                 Coordonnees coordonnees = new Coordonnees(x, y);
-                plateau.poserPion(coordonnees, new Pion("X",coordonnees));
+                plateau.poserPion(coordonnees, new Pion("X"));
             }
         }
+    }
+    
+    @Test
+    public void testCoordonneesExiste () {
+    	boolean existe = this.plateau.coordonneesExiste(new Coordonnees(4, 4));
+    	assertFalse(existe);
     }
 }
