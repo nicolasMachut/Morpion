@@ -111,7 +111,7 @@ public class Dames {
             
             coordonneesCase = new Coordonnees(x, y);
 
-        } while (!controleRegle.verifMouvement(joueurQuiDoitJouer, coordonneesCase, coordonneesPion));
+        } while (!controleRegle.verifMouvement(joueurQuiDoitJouer, coordonneesPion, coordonneesCase));
         return coordonneesCase;
     }
 

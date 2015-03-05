@@ -66,6 +66,7 @@ public class ControleRegle {
         Case caseChoisie = this.plateau.getCase(coordonnees);
         String typePion = pion.getType();
         String couleurCase = caseChoisie.getType();
+        
         if (!couleurCase.equals(typePion)) {
             this.plateau.poserPion(coordonnees, pion);
         } else {
@@ -89,7 +90,7 @@ public class ControleRegle {
         return true;
     }
 
-    public boolean verifMouvement(Joueur joueur, Coordonnees coordonneesCase, Coordonnees coordonneesPion) {
+    public boolean verifMouvement(Joueur joueur, Coordonnees coordonneesPion, Coordonnees coordonneesCase) {
         String couleurCase = plateau.getCase(coordonneesCase).getType();
         boolean caseVide = plateau.getCase(coordonneesCase).getPion() == null;
         boolean couleurOk = couleurCase.equals("N");
@@ -102,8 +103,8 @@ public class ControleRegle {
     	Coordonnees coordonneesPionAManger = this.peutMangerUnPion(coordonneesPion, joueur);
     	if (coordonneesPionAManger != null && coordonneesPionAManger != coordonneesCase) {
     		
-    		int sensX = coordonneesCase.getX() - coordonneesPionAManger.getX();
-    		int sensY = coordonneesCase.getY() - coordonneesPionAManger.getY();
+    		int sensX = coordonneesPionAManger.getX() - coordonneesPion.getX();
+    		int sensY = coordonneesPionAManger.getY() - coordonneesPion.getY();
     		
     		if (coordonneesCase.equals(new Coordonnees(coordonneesPionAManger.getX() + sensX, coordonneesPionAManger.getY() + sensY))) {
     			this.mangerPion(coordonneesPionAManger);
@@ -122,7 +123,7 @@ public class ControleRegle {
 		
 	}
 
-	public ArrayList<Case> getCaseAutour (Coordonnees coordonnees) {
+	public ArrayList<Case> getCasesAutour (Coordonnees coordonnees) {
 
     	ArrayList<Case> cases = new ArrayList<Case>();
     	
@@ -157,7 +158,7 @@ public class ControleRegle {
      */
     public Coordonnees peutMangerUnPion (Coordonnees coordonnees, Joueur joueur) {
     	
-    	for (Case uneCase : this.getCaseAutour(coordonnees)) {
+    	for (Case uneCase : this.getCasesAutour(coordonnees)) {
     		if (!uneCase.estLibre() && !uneCase.getPion().getType().equals(joueur.getType())) {
     			return uneCase.getCoordonnees();
     		}

@@ -13,6 +13,7 @@ import generiques.Plateau;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -64,7 +65,7 @@ public class ControleRegleTest {
     @Test
     public void testCasesAutourMilieuPlateau () {
     	Coordonnees coordonnees = new Coordonnees(4, 4);
-    	ArrayList<Case> casesAutour = this.controleRegle.getCaseAutour(coordonnees);
+    	ArrayList<Case> casesAutour = this.controleRegle.getCasesAutour(coordonnees);
     	
     	assertEquals(plateau.getCase(new Coordonnees(3, 3)), casesAutour.get(0));
     	assertEquals(plateau.getCase(new Coordonnees(3, 5)), casesAutour.get(1));
@@ -75,7 +76,7 @@ public class ControleRegleTest {
     @Test
     public void testCasesAutourBordPlateau () {
     	Coordonnees coordonnees = new Coordonnees(4, 0);
-    	ArrayList<Case> casesAutour = this.controleRegle.getCaseAutour(coordonnees);
+    	ArrayList<Case> casesAutour = this.controleRegle.getCasesAutour(coordonnees);
     	
     	assertEquals(plateau.getCase(new Coordonnees(3, 1)), casesAutour.get(0));
     	assertEquals(plateau.getCase(new Coordonnees(5, 1)), casesAutour.get(1));
@@ -90,8 +91,22 @@ public class ControleRegleTest {
     	assertEquals(new Coordonnees(3, 3), this.controleRegle.peutMangerUnPion(new Coordonnees(2, 2), joueur));
     }
     
-    public void testVerifMouvementOk () throws Exception {
+    @Test
+    public void testVerifMouvementMangerPion () throws Exception {
     	this.controleRegle.ajouterPionsSurPlateau();
-    	
+    	this.controleRegle.deplacerPion(new Coordonnees(6, 1), new Coordonnees(5, 2));
+    	this.controleRegle.deplacerPion(new Coordonnees(3, 4), new Coordonnees(4, 3));
+    	boolean result = this.controleRegle.verifMouvement(new Joueur("Nicolas", "B"), new Coordonnees(5, 2), new Coordonnees(3, 4));
+    	assertTrue(result);
+    }
+    
+    @Test
+    public void testVerifMouvementQuandUnPionDoitEtreMange () throws Exception {
+    	this.controleRegle.ajouterPionsSurPlateau();
+    	this.controleRegle.deplacerPion(new Coordonnees(6, 1), new Coordonnees(5, 2));
+    	this.controleRegle.deplacerPion(new Coordonnees(3, 4), new Coordonnees(4, 3));
+    	this.plateau.afficherAvecPions();
+    	boolean result = this.controleRegle.verifMouvement(new Joueur("Nicolas", "B"), new Coordonnees(5, 2), new Coordonnees(4, 1));
+    	assertFalse(result);
     }
 }
