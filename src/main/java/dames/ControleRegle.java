@@ -99,16 +99,30 @@ public class ControleRegle {
         	return false;
         }
         
-        if (Math.abs(coordonneesCase.getX() - coordonneesPion.getX()) > 1) {
-        	// Le joueur essai d'avancer de plus d'une case d'un coup
-        	// On vérifie si il peut manger un pion
-        	
-        }
+    	Coordonnees coordonneesPionAManger = this.peutMangerUnPion(coordonneesPion, joueur);
+    	if (coordonneesPionAManger != null && coordonneesPionAManger != coordonneesCase) {
+    		
+    		int sensX = coordonneesCase.getX() - coordonneesPionAManger.getX();
+    		int sensY = coordonneesCase.getY() - coordonneesPionAManger.getY();
+    		
+    		if (coordonneesCase.equals(new Coordonnees(coordonneesPionAManger.getX() + sensX, coordonneesPionAManger.getY() + sensY))) {
+    			this.mangerPion(coordonneesPionAManger);
+    		} else {
+    			System.out.println("Tu dois manger le pion : " + coordonneesPionAManger);
+    			return false;
+    		}
+    	}
 
         return true;
     }
     
-    public ArrayList<Case> getCaseAutour (Coordonnees coordonnees) {
+    private void mangerPion(Coordonnees coordonneesPionAManger) {
+		this.plateau.getCase(coordonneesPionAManger).viderCase();
+		System.out.println("Bravo ! Tu as mangé un pion !");
+		
+	}
+
+	public ArrayList<Case> getCaseAutour (Coordonnees coordonnees) {
 
     	ArrayList<Case> cases = new ArrayList<Case>();
     	

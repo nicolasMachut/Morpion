@@ -89,4 +89,9 @@ public class ControleRegleTest {
     	
     	assertEquals(new Coordonnees(3, 3), this.controleRegle.peutMangerUnPion(new Coordonnees(2, 2), joueur));
     }
+    
+    public void testVerifMouvementOk () throws Exception {
+    	this.controleRegle.ajouterPionsSurPlateau();
+    	
+    }
 }
